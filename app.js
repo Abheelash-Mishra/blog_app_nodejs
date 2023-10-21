@@ -2,12 +2,15 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
+require('dotenv').config();
+
 const blogRoutes = require("./routes/blogRoutes");
 
 const app = express();
 const port = 3001;
 
-const dbURI = "mongodb+srv://abheelashdev:Neel$12345@blogscluster.ojgc4f6.mongodb.net/blog-app?retryWrites=true&w=majority";
+const dbURI = process.env.MONGODB_URI;
+
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
     .then((result) => {
         console.log("Connected to DB");
